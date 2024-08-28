@@ -5,6 +5,7 @@ from graph_elements.utils import *				# Extra post processing on .osm
 from visualization import *          			# Visualize the graph
 from time import time							# Benchmarking
 from math import floor							# Benchmarking
+import csv
 
 if __name__=="__main__":
 
@@ -26,8 +27,8 @@ if __name__=="__main__":
 	node_elems = list(dom.getElementsByTagName("node"))
 
 	# Filter the ways and nodes to the ones we care about
-	way_elems  = filter_ways(way_elems)
-	node_elems = filter_nodes(node_elems, way_elems)
+	# way_elems  = filter_ways(way_elems)
+	# node_elems = filter_nodes(node_elems, way_elems)
 
 	# Create the graph
 	g = Graph()
@@ -97,6 +98,17 @@ if __name__=="__main__":
 	# Generate Eulerian path
 	starting_node = g.nodes[0]
 	path = hierholzer(g.to_node_dictionary(), starting_node)
+ 
+ 	# Define the fieldnames
+	fieldnames = ['id', 'lat', 'lng', 'x', 'y', 'index']
+
+	# save path to .txt file
+	with open("data/path.csv", "w") as file:
+		# Create a writer object
+		writer = csv.DictWriter(file, fieldnames=fieldnames)
+		writer.writeheader()
+		for i, node in enumerate(path):
+			writer.writerow({'id': node.iden, 'lat': node.lat_lon[0], 'lng': node.lat_lon[1], 'x': node.x, 'y': node.y, 'index': i})
 
 	print("Done. How do you want to view the data?")
 	print("1. Show map")

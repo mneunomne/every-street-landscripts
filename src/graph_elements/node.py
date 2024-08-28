@@ -16,6 +16,8 @@ class Node():
 		iden = int(elem.getAttribute("id"))
 		lat  = float(elem.getAttribute("lat"))
 		lon  = float(elem.getAttribute("lon"))
+		x = int(elem.getAttribute("x"))
+		y = int(elem.getAttribute("y"))
 
 		# Make sure everything worked	
 		if iden == None:
@@ -30,7 +32,8 @@ class Node():
 
 		self.iden    = iden		# Identification
 		self.lat_lon = lat_lon 	# Longitude
-
+		self.x = x
+		self.y = y
 
 if __name__ == "__main__":
 
