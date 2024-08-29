@@ -58,6 +58,9 @@ if __name__=="__main__":
 	# Adding ways is a lot more complicated
 	# For each way,
 	for elem in way_elems:
+   
+    # debug print
+		print("Way ID: {}".format(elem.getAttribute("id")))
 		
 		# Get the nd_tags
 		nd_tags = list(elem.getElementsByTagName("nd"))

@@ -255,6 +255,9 @@ def make_graph_eulerian(g):
 		path = bfs(g, start_node, odd_nodes)
 		end_node = path[0]
 		path_back = bfs(g, end_node, odd_nodes)
+  
+		# debug print
+		print("nodes left: {}".format(len(odd_nodes)))
 
 		# If they both agree that they are the shortest node to each other
 		if start_node == path_back[0]:
