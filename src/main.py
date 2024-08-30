@@ -19,6 +19,9 @@ if __name__=="__main__":
 	except:
 		raise Exception("No such file")
 
+	name = file_location.split("/")[-1].split(".")[0]
+	print("file name: {}".format(name))
+ 
 	stop = time()
 	print("Parsed .osm in {} milliseconds".format(floor((stop - start)*1000.0)))
 
@@ -106,7 +109,9 @@ if __name__=="__main__":
 	fieldnames = ['id', 'lat', 'lng', 'x', 'y', 'index']
 
 	# save path to .txt file
-	with open("data/path.csv", "w") as file:
+ 
+
+	with open("data/{}.csv".format(name), "w") as file:
 		# Create a writer object
 		writer = csv.DictWriter(file, fieldnames=fieldnames)
 		writer.writeheader()
